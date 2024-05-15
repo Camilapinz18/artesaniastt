@@ -1,12 +1,36 @@
 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+//Carga las fuentes antes que cualqueir cosa
+import { useFonts } from 'expo-font';
+import * as SplashScreen from "expo-splash-screen";
+import { useCallback } from 'react';
 
 export default function App() {
 
+    const [fontsLoaded] = useFonts({
+        regular: require('../assets/fonts/Poppins-Regular.ttf'),
+        light: require('../assets/fonts/Poppins-Light.ttf'),
+        bold: require('../assets/fonts/Poppins-Bold.ttf'),
+        medium: require('../assets/fonts/Poppins-Medium.ttf'),
+        extrabold: require('../assets/fonts/Poppins-ExtraBold.ttf'),
+        semibold: require('../assets/fonts/Poppins-SemiBold.ttf')
+    })
+
+    const onLayoutRootView = useCallback(async()=>{
+        if(fontsLoaded){
+            await SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]
+    )
+
+    if(!fontsLoaded){
+        return null;
+    }
+
     return (
     <View style={styles.container}>
-        <Text> to start working on your addpp !</Text>
+        <Text style={styles.textStyle}> to start working on your addpp !</Text>
         <StatusBar style="auto" />
     </View>
     );
@@ -20,4 +44,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    textStyle:{
+        fontFamily: "semibold",
+        fontSize: 20
+    }
 });
