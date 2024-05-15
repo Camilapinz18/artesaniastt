@@ -47,5 +47,5 @@ const styles = StyleSheet.create({
     textStyle:{
         fontFamily: "semibold",
         fontSize: 20
-    }
+    },
 });
