@@ -1,10 +1,15 @@
-
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet } from 'react-native';
 //Carga las fuentes antes que cualqueir cosa
 import { useFonts } from 'expo-font';
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from 'react';
+import BottomTabNavigator from '../navigation/BottomTabNavigator';
+import { Cart } from '../screens';
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 
@@ -29,10 +34,20 @@ export default function App() {
     }
 
     return (
-    <View style={styles.container}>
-        <Text style={styles.textStyle}> to start working on your addpp !</Text>
-        <StatusBar style="auto" />
-    </View>
+    <NavigationContainer independent={true}>
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Bottom Navigation"
+                component={BottomTabNavigator}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name="Cart"
+                component={Cart}
+                options={{headerShown: false}}
+            />
+        </Stack.Navigator>
+    </NavigationContainer>
     );
 
 }
