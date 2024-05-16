@@ -5,6 +5,9 @@ import styles from './home.style'
 import { Ionicons, Fontisto } from '@expo/vector-icons'
 import { ScrollView } from 'react-native'
 import { Welcome } from '../components'
+import Carrousel from '../components/home/Carrousel'
+import Heading from '../components/home/Heading'
+import ProductRow from '../components/products/ProductRow'
 
 const Home = () => {
   return (
@@ -28,6 +31,9 @@ const Home = () => {
 
       <ScrollView>
         <Welcome/>
+        <Carrousel/>
+        <Heading/>
+        <ProductRow/>
       </ScrollView>
     </SafeAreaView>
   )
