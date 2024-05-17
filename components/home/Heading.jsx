@@ -10,7 +10,7 @@ const Heading = () => {
         <View style={styles.header}>
             <Text style={styles.headerTitle}>Destacados</Text>
             <TouchableOpacity>
-                <Ionicons name='ios-grid' size={24} color={COLORS.primary}/>
+                <Ionicons name='grid' size={24} color={COLORS.primary}/>
             </TouchableOpacity>
         </View>
     </View>

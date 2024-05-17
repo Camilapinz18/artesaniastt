@@ -3,11 +3,15 @@ import React from 'react'
 import styles from './productCardView.style'
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '../../constants'
+import { useNavigation } from 'expo-router'
 
 const ProductCardView = () => {
+
+    const navigation = useNavigation();
+
   return (
    <TouchableOpacity
-        onPress={()=>{}}
+        onPress={()=>navigation.navigate('ProductDetails')}
     >
         <View style={styles.container}>
             <View style={styles.imageContainer}>

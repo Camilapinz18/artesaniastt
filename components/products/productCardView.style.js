@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
     imageContainer:{
         flex: 1,
         width: 170,
-        marginLeft: SIZES.smal/2,
-        marginTop: SIZES.smal/2,
+        marginLeft: SIZES.small/2,
+        marginTop: SIZES.small/2,
         borderRadius: SIZES.small,
         overflow: 'hidden',
         backgroundColor: 'blue'
