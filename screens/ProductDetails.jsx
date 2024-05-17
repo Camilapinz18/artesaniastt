@@ -2,11 +2,14 @@ import { View, Image, TouchableOpacity,Text} from 'react-native'
 import React from 'react'
 import styles from './productDetails.style'
 import { Fontisto, Ionicons, MaterialCommunityIcons, SimpleLineIcons } from '@expo/vector-icons'
+import { useRoute } from '@react-navigation/native'
 import { COLORS, SIZES } from '../constants'
 import { useState } from 'react'
 
 const ProductDetails = ({navigation}) => {
 
+    const route = useRoute();
+    const {item} = route.params
     const [count, setCount] = useState(1);
 
     const increment =() =>{
@@ -34,15 +37,15 @@ const ProductDetails = ({navigation}) => {
         </View>
 
         <Image
-            source={{uri: 'https://images.pexels.com/photos/20123455/pexels-photo-20123455/free-photo-of-paisaje-hombre-verano-trabajando.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }}
+            source={{uri: item.image_url }}
             style={styles.image}
         />
 
         <View style={styles.details}>
             <View style={styles.titleRow}>
-                <Text style={styles.title}>Product</Text>
+                <Text style={styles.title}>{item.title}</Text>
                 <View style={styles.priceWrapper}>
-                    <Text style={styles.price}>$ 123.000</Text>
+                    <Text style={styles.price}>$ {item.price}</Text>
                 </View>
             </View>
 
@@ -69,14 +72,14 @@ const ProductDetails = ({navigation}) => {
                     Description
                 </Text>
                 <Text style={styles.descriptionText}>
-                    Es un hecho establecido hace demasiado tiempo que us paquetes de autoedición y edixto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).
+                    {item.description}
                 </Text>
 
                 <View style={{marginBottom: SIZES.small}}>
                     <View style={styles.location}>
                         <View style={{flexDirection: 'row'}}>
                             <Ionicons name='location-outline' size={20}/>
-                            <Text>Tunja</Text>
+                            <Text>{item.supplier}</Text>
                         </View>
 
                         <View style={{flexDirection: 'row'}}>

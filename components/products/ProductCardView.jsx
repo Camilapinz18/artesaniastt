@@ -5,25 +5,25 @@ import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '../../constants'
 import { useNavigation } from 'expo-router'
 
-const ProductCardView = () => {
+const ProductCardView = ({item}) => {
 
     const navigation = useNavigation();
 
   return (
    <TouchableOpacity
-        onPress={()=>navigation.navigate('ProductDetails')}
+        onPress={()=>navigation.navigate('ProductDetails', {item})}
     >
         <View style={styles.container}>
             <View style={styles.imageContainer}>
                 <Image
-                    source={{uri: "https://images.pexels.com/photos/20106383/pexels-photo-20106383/free-photo-of-manos-sosteniendo-una-taza-de-matcha.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}}
+                    source={{uri: item.image_url}}
                     style={styles.image}
                 />
             </View>
             <View style={styles.details}>
                 <Text style={styles.title} numberOfLines={1}>Produt</Text>
-                <Text style={styles.supplier}>Product</Text>
-                <Text style={styles.price}>$123.000</Text>
+                <Text style={styles.supplier}>{item.title}</Text>
+                <Text style={styles.price}>$ {item.price}</Text>
             </View>
 
             <TouchableOpacity style={styles.addBtn}>

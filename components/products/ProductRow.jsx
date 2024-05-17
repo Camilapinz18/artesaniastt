@@ -1,21 +1,27 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, ActivityIndicator } from 'react-native'
 import React from 'react'
-import { SIZES } from '../../constants'
+import { COLORS, SIZES } from '../../constants'
 import ProductCardView from './ProductCardView'
 import styles from './productRow.style'
+import useFetch from '../../hooks/useFetch'
 
 const ProductRow = () => {
 
-    const products = [1,2,3,4]
+    const {data, isLoading, error} = useFetch()
 
   return (
     <View style={styles.container}>
-        <FlatList
-        data={products}
-        renderItem={({item})=>(<ProductCardView/>)}
-        horizontal
-        contentContainerStyle={{columnGap: SIZES.medium}}
-    />
+        {isLoading ? (
+          <ActivityIndicator size={SIZES.large} color={COLORS.primary}/>
+        ): error? (
+          <Text>Algo fue mal</Text>
+        ):(<FlatList
+          data={data}
+          keyExtractor={(item) =>  item.id}
+          renderItem={({item})=>(<ProductCardView item = {item}/>)}
+          horizontal
+          contentContainerStyle={{columnGap: SIZES.medium}}
+        />)}
     </View>
   )
 }
